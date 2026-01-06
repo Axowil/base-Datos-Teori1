@@ -25,13 +25,13 @@ try:
     # Crear la base de datos si no existe
     cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_CONFIG['database']}")
     cursor.execute(f"USE {DB_CONFIG['database']}")
-    print(f"✓ Base de datos '{DB_CONFIG['database']}' lista")
+    
     
     # Eliminar tablas si existen 
     cursor.execute("DROP TABLE IF EXISTS casting")
     cursor.execute("DROP TABLE IF EXISTS actores")
     cursor.execute("DROP TABLE IF EXISTS peliculas")
-    print("✓ Tablas antiguas eliminadas (si existían)")
+    
     
     # Crear tabla peliculas
     cursor.execute('''
@@ -43,7 +43,7 @@ try:
             votos INT
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     ''')
-    print("✓ Tabla 'peliculas' creada")
+    
     
     # Crear tabla actores
     cursor.execute('''
@@ -89,17 +89,6 @@ try:
             INSERT INTO casting (pelicula_id, actor_id)
             VALUES (%s, %s)
         ''', (casting['pelicula_id'], casting['actor_id']))
-    
-    # Confirmar cambios
-    conn.commit()
-    print("\n" + "="*60)
-    print("¡IMPORTACIÓN COMPLETADA EXITOSAMENTE!")
-    print("="*60)
-    print(f"Base de datos: {DB_CONFIG['database']}")
-    print(f"Películas: {len(datos['peliculas'])}")
-    print(f"Actores: {len(datos['actores'])}")
-    print(f"Relaciones casting: {len(datos['casting'])}")
-    print("="*60)
     
     
 finally:
