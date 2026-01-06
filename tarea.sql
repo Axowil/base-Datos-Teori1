@@ -1,7 +1,6 @@
--- ============================================
+
 -- EJERCICIOS DE BASES DE DATOS SQL
--- Base de datos: peliculas_db
--- ============================================
+
 
 -- Consulta 1:
 SELECT DISTINCT año FROM peliculas ORDER BY año;
