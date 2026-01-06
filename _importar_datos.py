@@ -43,7 +43,7 @@ try:
             votos INT
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     ''')
-    
+   
     
     # Crear tabla actores
     cursor.execute('''
@@ -89,6 +89,17 @@ try:
             INSERT INTO casting (pelicula_id, actor_id)
             VALUES (%s, %s)
         ''', (casting['pelicula_id'], casting['actor_id']))
+    
+    # Confirmar cambios
+    conn.commit()
+    print("\n" + "="*60)
+    print("¡IMPORTACIÓN COMPLETADA EXITOSAMENTE")
+    print("="*60)
+    print(f"Base de datos: {DB_CONFIG['database']}")
+    print(f"Películas: {len(datos['peliculas'])}")
+    print(f"Actores: {len(datos['actores'])}")
+    print(f"Relaciones casting: {len(datos['casting'])}")
+    print("="*60)
     
     
 finally:
